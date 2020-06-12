@@ -46,34 +46,37 @@ app.showToLookUp = () => {
     })
 }
 
-// Function to display returned result on the page
+// Function to display returned result on the pag
 app.displayMatchedShow = (returnedShow) => {
+    // empty the results container
     $(".results").empty();
-    
-    const title = $("<h2>").text(returnedShow.name)
-    const image = $("<img>").attr("src", returnedShow.image.original);
-    const language = $("<p>").text(`Language: ${returnedShow.language}`);
-    const genres = $("<p>").text(`Genres: ${returnedShow.genres}`);
+
     let rating;
+    let summary;
+
     if (returnedShow.rating.average === null) {
-        rating =  $("<p>").text("Rating: N/A");
-    } else {
-        rating =  $("<p>").text(`Rating: ${returnedShow.rating.average}`);
+        rating = "Rating: N/A";
+    }else{
+        rating = returnedShow.rating.average;
     };
-    const summaryTitle = $("<p>").text("Summary").addClass("summaryTitle")
-let summary = $("<p>");
-    console.log(summary);
-    let hr = $("<hr>");
-    if (returnedShow.summary === null) {
-        summary.text("Summary There is no description for this show.");
-    } else {
-        summary.text(`${returnedShow.summary}`);
-    };
-    const showContainer = $("<div>").append(title, image, language, genres, rating, summaryTitle, hr, `${returnedShow.summary}`);
-        
+
+    if(returnedShow.summary === null){
+        summary = "There is no summary for this show."
+    }else{
+        summary = returnedShow.summary;
+    }
+
+    const showContainer = `
+                <h2>${returnedShow.name}</h2>
+                <img src="${returnedShow.image.original}" alt="">
+                <p>Language: ${returnedShow.language}</p>
+                <p>Genres: ${returnedShow.genres}</p>
+                <p>Rating: ${rating}</p>
+                <p>Summary</p>
+                <p>${summary}</p>
+                `
+    // append the results to the results container
     $(".results").append(showContainer);
-
-
 }
 
 
