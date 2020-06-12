@@ -300,7 +300,7 @@ body {
 header {
   height: 100vh;
   background-color: #DADDD8;
-  background-image: url(/images/headerImage.jpg);
+  background-image: url(../images/headerImage.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

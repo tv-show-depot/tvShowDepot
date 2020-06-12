@@ -60,8 +60,9 @@ app.displayMatchedShow = (returnedShow) => {
     } else {
         rating =  $("<p>").text(`Rating: ${returnedShow.rating.average}`);
     };
+  
     const summaryTitle = $("<p>").text("Summary").addClass("summaryTitle")
-let summary = $("<p>");
+    let summary = $("<p>");
     console.log(summary);
     let hr = $("<hr>");
     if (returnedShow.summary === null) {
@@ -70,6 +71,7 @@ let summary = $("<p>");
         summary.text(`${returnedShow.summary}`);
     };
     const showContainer = $("<div>").append(title, image, language, genres, rating, summaryTitle, hr, `${returnedShow.summary}`);
+
         
     $(".results").append(showContainer);
 
