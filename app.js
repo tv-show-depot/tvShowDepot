@@ -2,8 +2,8 @@ app = {};
 
 app.url = ` http://api.tvmaze.com/singlesearch/shows?q=query`;
 
+// Function fetch API using ajax
 app.fetchShow = (query) => {
-
  $.ajax({
         url: app.url,
         method: "GET",
@@ -12,15 +12,31 @@ app.fetchShow = (query) => {
             format: "json",
             q: query
         }
-        
     }).then((result) => {
         app.displayMatchedShow(result)
     }).fail((error) => {
         app.displayErrorMessage();
     })
-
 }
 
+// Smooth scroll to Search section
+app.startSmoothScroll = () => {
+    $("header button").on('click', function(e) {
+        e.preventDefault();
+        $("html, body").animate({
+            scrollTop: $("main").offset().top}, "slow");
+    })
+}
+// Smooth scroll to Result section
+app.searchSmoothScroll = () => {
+    $("main button").on('click', function(e) {
+        e.preventDefault();
+        $("html, body").animate({
+            scrollTop: $(".results").offset().top}, "slow");
+    })
+}
+
+// Function to get value from user's input and pass in API call to search for that value
 app.showToLookUp = () => {
     $(".submitButton").on("click", function(e) {   
         e.preventDefault();
@@ -33,46 +49,39 @@ app.showToLookUp = () => {
 // Function to display returned result on the page
 app.displayMatchedShow = (returnedShow) => {
     $(".results").empty();
-    console.log(returnedShow);
+    
     const title = $("<h2>").text(returnedShow.name)
     const image = $("<img>").attr("src",returnedShow.image.original);
     const language = $("<p>").text(`Language: ${returnedShow.language}`);
     const genres = $("<p>").text(`Genres: ${returnedShow.genres}`);
-    let rating = $("<p>");
+    let rating;
     if (returnedShow.rating.average === null) {
-        rating.text("Rating: N/A");
+        rating =  $("<p>").text("Rating: N/A");
     } else {
-        rating.text(`Rating: ${returnedShow.rating.average}`);
-    }
-    
-    const summary = `Summary: ${returnedShow.summary}`;
+        rating =  $("<p>").text(`Rating: ${returnedShow.rating.average}`);
+    };
+    let summary;
+    if (returnedShow.summary === null) {
+        summary = "Summary: There is no description for this show.";
+    } else {
+        summary = `Summary: ${returnedShow.summary}`;
+    };
     const showContainer = $("<div>").append(title, image, language, genres, rating, summary);
         
-
     $(".results").append(showContainer);
 }
+
 
 // Function to handle error when nothing matched with user input
 app.displayErrorMessage = () => {
     const errorMessage = $("<h2>").text("There are 0 result matched. Please try again or search for other shows!");
     $(".results").empty().append(errorMessage);
-    
 }
     
 
-
-// A button that allows user to start the process, which will navigate them to a search section.
-// Listen to the button click event to scroll to Search section.
-// A search bar and input field so user can type in the show's name
-// Create an eventlistener on submit button, prevent default behavior
-// Get value from user and store in a variable
-// Make API call
-// Store returned information in variable
-// Append information to the page
-
-
-
 app.init = () => {
+    app.startSmoothScroll();
+    app.searchSmoothScroll();
     app.showToLookUp();
 }
 
