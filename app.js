@@ -51,7 +51,7 @@ app.displayMatchedShow = (returnedShow) => {
     $(".results").empty();
     
     const title = $("<h2>").text(returnedShow.name)
-    const image = $("<img>").attr("src",returnedShow.image.original);
+    const image = $("<img>").attr("src", returnedShow.image.original);
     const language = $("<p>").text(`Language: ${returnedShow.language}`);
     const genres = $("<p>").text(`Genres: ${returnedShow.genres}`);
     let rating;
@@ -60,15 +60,22 @@ app.displayMatchedShow = (returnedShow) => {
     } else {
         rating =  $("<p>").text(`Rating: ${returnedShow.rating.average}`);
     };
-    let summary;
+  
+    const summaryTitle = $("<p>").text("Summary").addClass("summaryTitle")
+    let summary = $("<p>");
+    console.log(summary);
+    let hr = $("<hr>");
     if (returnedShow.summary === null) {
-        summary = "Summary: There is no description for this show.";
+        summary.text("Summary There is no description for this show.");
     } else {
-        summary = `Summary: ${returnedShow.summary}`;
+        summary.text(`${returnedShow.summary}`);
     };
-    const showContainer = $("<div>").append(title, image, language, genres, rating, summary);
+    const showContainer = $("<div>").append(title, image, language, genres, rating, summaryTitle, hr, `${returnedShow.summary}`);
+
         
     $(".results").append(showContainer);
+
+
 }
 
 
