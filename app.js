@@ -56,13 +56,13 @@ app.displayMatchedShow = (returnedShow) => {
 
     if (returnedShow.rating.average === null) {
         rating = "Rating: N/A";
-    }else{
+    } else {
         rating = returnedShow.rating.average;
     };
 
     if(returnedShow.summary === null){
         summary = "There is no summary for this show."
-    }else{
+    } else {
         summary = returnedShow.summary;
     }
 
