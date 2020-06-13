@@ -251,6 +251,21 @@ input {
   padding: 0;
 }
 
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 header,
 form {
   display: -webkit-box;
@@ -273,11 +288,13 @@ header {
 
 button,
 input,
-p {
+p,
+li {
   font-size: 2rem;
 }
 
-p {
+p,
+li {
   font-family: "Roboto Condensed", sans-serif;
 }
 
@@ -291,10 +308,6 @@ header p {
 h1,
 button {
   position: relative;
-}
-
-body {
-  background-color: #DADDD8;
 }
 
 header {
@@ -335,6 +348,10 @@ button {
   margin: 2rem 0;
 }
 
+.searchSection {
+  height: 80vh;
+}
+
 form {
   width: 90%;
   margin: 0 auto;
@@ -351,20 +368,38 @@ input {
   margin: 1rem;
 }
 
-.results h2 {
+.results .searchedTitle {
   font-family: "Federo", sans-serif;
   font-size: 3rem;
-  margin: 2rem 0;
-  background-color: #DADDD8;
+  margin: 2rem 0 0;
 }
 
 .results p {
   margin: .5rem 0;
 }
 
-.results .summary {
+.results .summaryTitle {
   text-align: center;
-  padding: 2rem;
+  padding-top: 2rem;
+}
+
+.results .searchedTitleHr {
+  margin-bottom: 2rem;
+}
+
+.results .searchedInfo hr {
+  width: 60%;
+  margin-bottom: 2rem;
+}
+
+.results .genresInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 footer {
@@ -372,4 +407,42 @@ footer {
   color: #DADDD8;
   text-align: center;
   height: 5rem;
+}
+
+@media (min-width: 768px) {
+  .results {
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "title title title" "image info info" "image info info";
+    gap: 2rem;
+  }
+  .searchedTitle {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    grid-area: title;
+    padding: 0 0 1rem 1rem;
+    border-bottom: 2px solid black;
+  }
+  .searchedImage {
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 2;
+    -ms-grid-column: 1;
+    grid-area: image;
+  }
+  .searchedInfo {
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 2;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 2;
+    grid-area: info;
+  }
+  .languageAndRating {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .languageAndRating p:last-child {
+    padding: 0 2rem;
+  }
 }

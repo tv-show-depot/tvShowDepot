@@ -2,6 +2,8 @@ app = {};
 
 app.url = ` http://api.tvmaze.com/singlesearch/shows?q=query`;
 
+const array = ["show", "another show", "yet another show"]
+
 // Function fetch API using ajax
 app.fetchShow = (query) => {
  $.ajax({
@@ -74,13 +76,23 @@ app.displayMatchedShow = (returnedShow) => {
     }
 
     const showContainer = `
-                <h2>${returnedShow.name}</h2>
-                <img src="${returnedShow.image.original}" alt="">
-                <p>Language: ${returnedShow.language}</p>
-                <p>Genres: ${returnedShow.genres}</p>
-                <p>Rating: ${rating}</p>
-                <p>Summary</p>
-                <p>${summary}</p>
+                <h2 class="searchedTitle">${returnedShow.name}</h2>
+                <hr class="searchedTitleHr">
+                <div class="searchedImage">
+                    <img src="${returnedShow.image.original}" alt="">
+                </div>
+                <div class="searchedInfo">
+                    <div class="basicInfo">
+                
+                            <p>Language: ${returnedShow.language}</p>
+                            <p>Rating: ${rating}</p>
+                    
+                        <p class="genres">Genres: ${returnedShow.genres}</p>
+                    </div>
+                    <p class="summaryTitle">Summary</p>
+                    <hr>
+                    <p>${summary}</p>
+                </div>
                 `
     // append the results to the results container
     $(".results").append(showContainer);
