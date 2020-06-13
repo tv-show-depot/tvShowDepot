@@ -20,19 +20,24 @@ app.fetchShow = (query) => {
 }
 
 // Smooth scroll to Search section
-app.startSmoothScroll = () => {
-    $("header button").on('click', function(e) {
+app.smoothScroll = () => {
+    // onclick event
+    $("button").on('click', function(e) {
         e.preventDefault();
+
+        let target;
+        // grab id of clicked button
+        const button = $(this).attr("id");
+
+        // expression to determine the target of the scroll
+        if(button === "start"){
+            target = $("main");
+        }else if (button === "search"){
+            target = $(".results");
+        }
+
         $("html, body").animate({
-            scrollTop: $("main").offset().top}, "slow");
-    })
-}
-// Smooth scroll to Result section
-app.searchSmoothScroll = () => {
-    $("main button").on('click', function(e) {
-        e.preventDefault();
-        $("html, body").animate({
-            scrollTop: $(".results").offset().top}, "slow");
+            scrollTop: $(target).offset().top}, "slow");
     })
 }
 
@@ -88,8 +93,7 @@ app.displayErrorMessage = () => {
     
 
 app.init = () => {
-    app.startSmoothScroll();
-    app.searchSmoothScroll();
+    app.smoothScroll();
     app.showToLookUp();
 }
 
