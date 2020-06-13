@@ -32,6 +32,8 @@ app.smoothScroll = () => {
         // expression to determine the target of the scroll
         if(button === "start"){
             target = $("main");
+            // Call the RandomShow function!
+            app.randomShow();
         }else if (button === "search"){
             target = $(".results");
         }
@@ -84,13 +86,40 @@ app.displayMatchedShow = (returnedShow) => {
     $(".results").append(showContainer);
 }
 
-
 // Function to handle error when nothing matched with user input
 app.displayErrorMessage = () => {
     const errorMessage = $("<h2>").text("There are 0 result matched. Please try again or search for other shows!");
     $(".results").empty().append(errorMessage);
 }
-    
+
+
+// Function to display random shows when Start button is pressed
+app.randomShow = () => {
+    app.getRandomNumber = () => {
+        const randomNumber = Math.ceil(Math.random() * 250);
+        return randomNumber;
+    }
+    app.getRandomShow = (number) => {
+        return $.ajax({
+            url: `http://api.tvmaze.com/shows/${number}`,
+            method: "GET",
+            dataType: "json"
+        }).then((data) => {
+            app.displayRandomShows(data);
+        })
+    }
+    const randomId = app.getRandomNumber();
+
+    for (let i = randomId; i <= randomId + 10 ; i++) {
+        app.getRandomShow(i);
+    }
+
+    app.displayRandomShows = (randomShow) => {
+        $(".results").append(
+            `<img src="${randomShow.image.original}">`
+        )
+    }
+}
 
 app.init = () => {
     app.smoothScroll();
