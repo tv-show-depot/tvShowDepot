@@ -13,11 +13,13 @@ header {
 
 button,
 input,
-p {
+p,
+li {
   font-size: 2rem;
 }
 
-p {
+p,
+li {
   font-family: $bodyText;
 }
 
@@ -33,10 +35,6 @@ button {
   position: relative;
 }
 // HEADER
-body{
-  background-color: $primary;
-}
-
 header {
   height: 100vh;
   background-color: $primary;
@@ -89,24 +87,32 @@ input {
   padding: 0 1rem;
 }
 
+// MAIN
+
 .results{
     margin: 1rem;
-    h2{
+    .searchedTitle{
       font-family: $headings;
       font-size: 3rem;
-      margin: 2rem 0;
-      background-color: $primary;
+      margin: 2rem 0 0;
     }
     p{
         margin: .5rem 0;
     }
     .summaryTitle{
       text-align: center;
-      border: 1px solid red;
+      padding-top: 2rem;
     }
-    .summary{
-      text-align: center;
-      padding: 2rem;
+    .searchedTitleHr{
+      margin-bottom: 2rem;
+    }
+    .searchedInfo hr{
+      width: 60%;
+      margin-bottom: 2rem;
+    }
+    .genresInfo{
+      display:flex;
+      flex-direction: column;
     }
 }
 
