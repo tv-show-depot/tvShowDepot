@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/favicon-16x16.png" type="image/x-icon">
     <link
         href="https://fonts.googleapis.com/css2?family=Federo&family=Jura:wght@700&family=Michroma&family=Roboto+Condensed:wght@300&family=Seaweed+Script&family=Titillium+Web:wght@900&display=swap"
         rel="stylesheet">
@@ -17,33 +18,42 @@
         <p>Your favourite show info</p>
         <button id="start">Start</button>
     </header>
+    <!-- END OF HEADER -->
     <main>
         <div class="wrapper">
-        <section class="searchSection">
-            <form action="">
-                <label for="searchBar"></label>
-                <input type="text" name="searchBar" id="searchBar" placeholder="Search a show">
-                <button class="submitButton" type="submit" id="search">GO</button>
-                <button class="clearSearch" id="clear">Clear Search</button>
-            </form>
-            <div class="results">
-                <!-- This is where the matched results of the search are displayed -->
-            </div>
-            <div>
-                <h3>Not sure what to watch? Here are some shows of the days</h3>
+            <section class="searchSection">
+                <form action="">
+                    <label for="searchBar"></label>
+                    <input type="text" name="searchBar" id="searchBar" placeholder="Search a show">
+
+                    <button class="submitButton" type="submit" id="search">GO</button>
+                </form>
+                <div class="results">
+                    <!-- This is where the matched results of the search are displayed -->
+                </div>
+            </section>
+            <!-- END OF SEARCH SECTION -->
+
+            <section class="randomSection">
+                <p class="suggestions">Not sure what to watch? <br>Here are some suggestions.</p>
                 <div class="randomResults">
                     <!-- This is where the random shows are displayed -->
                 </div>
-                <button class="randomizeButton" id="randomize">Get More Random Shows!</button>
-                <button class="goBackButton" id="back">Back to Top</button>
-            </div>
-        </section>
+                <button class="clearSearch" id="clear">Clear Random Search Results</button>
+                <div class="moreRandom">
+                    <p>Get <span class="more">More</span> Random Shows!</p>
+                    <button class="randomizeButton" id="randomize">go</button>
+                </div>
+                <button class="toTopButton" id="back">Back to Top</button>
+            </section>
+            <!-- END OF RANDOM RESULTS SECTION -->
+
         </div>
     </main>
-            <!-- <footer>
-                <p class="copyright">&copy; Tv Show Depot 2020</p>
-            </footer> -->
-
+    <footer>
+        <p class="copyright">&copy; Tv Show Depot 2020</p>
+    </footer>
+    <!-- END OF FOOTER -->
     <script src='https://code.jquery.com/jquery-3.4.0.min.js'
         integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
     <script src="./app.js"></script>

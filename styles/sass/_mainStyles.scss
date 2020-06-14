@@ -1,14 +1,13 @@
 // PAGE STYLES
-
 header,
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.moreRandom,
+.randomSection {
+  @include flex(flex, column, center, center);
 }
 
-header {
-  justify-content: center;
+.genresInfo {
+  display: flex;
+  flex-direction: column;
 }
 
 button,
@@ -31,19 +30,83 @@ header p {
 }
 
 h1,
-button {
+button,
+.enteredSite p {
   position: relative;
 }
+
+h1,
+.searchedTitle {
+  font-family: $headings;
+}
+
+header p,
+.summaryTitle,
+footer {
+  text-align: center;
+}
+
+button,
+input {
+  height: 4rem;
+}
+
+.searchSection,
+.randomSection {
+  margin: 1rem;
+}
+
+button:hover,
+button:focus-within {
+  cursor: pointer;
+}
+
+.clearSearch:hover,
+.clearSearch:focus-within,
+.toTopButton:hover,
+.toTopButton:focus-within,
+button:hover,
+button:focus-within {
+  transition: 0.2s;
+}
+
+.clearSearch:hover,
+.clearSearch:focus-within {
+  border-width: 4px;
+  transition: 0.2s;
+}
+
+button,
+.moreRandom {
+  margin: 2rem 0;
+}
+
+input,
+.suggestions,
+.moreRandom {
+  width: 100%;
+}
+
+.clearSearch,
+.searchedTitle {
+  margin: 2rem 0 0;
+}
+
+header,
+.suggestions,
+.moreRandom,
+.randomResults .showContainer:nth-child(even) {
+  background-color: $primary;
+}
+
 // HEADER
 header {
   height: 100vh;
-  background-color: $primary;
   background-image: url(../images/headerImage.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   h1 {
-    font-family: $headings;
     font-size: 4rem;
     letter-spacing: 0.2rem;
     bottom: 2rem;
@@ -52,7 +115,6 @@ header {
     font-family: $leadText;
     margin: 0 2rem;
     font-size: 2.5rem;
-    text-align: center;
     letter-spacing: 0.1rem;
     font-weight: 700;
   }
@@ -64,61 +126,102 @@ header {
 button {
   text-transform: uppercase;
   width: 15rem;
-  height: 4rem;
   background-color: $accentTwo;
   border: 4px solid $accentOne;
-  // font-weight: 600;
-  margin: 2rem 0;
-}
-
-.searchSection{
-  height: 80vh;
 }
 
 form {
-  width: 90%;
+  @include flex(flex, column, auto, center);
   margin: 0 auto;
 }
 
 input {
-  height: 4rem;
-  width: 100%;
   margin: 6rem auto 0;
   padding: 0 1rem;
 }
 
-// MAIN
-
-.results{
-    margin: 1rem;
-    .searchedTitle{
-      font-family: $headings;
-      font-size: 3rem;
-      margin: 2rem 0 0;
-    }
-    p{
-        margin: .5rem 0;
-    }
-    .summaryTitle{
-      text-align: center;
-      padding-top: 2rem;
-    }
-    .searchedTitleHr{
-      margin-bottom: 2rem;
-    }
-    .searchedInfo hr{
-      width: 60%;
-      margin-bottom: 2rem;
-    }
-    .genresInfo{
-      display:flex;
-      flex-direction: column;
-    }
+.clearSearch,
+.toTopButton {
+  background-color: #fff;
+  text-transform: none;
+  text-transform: none;
+  font-size: 1.7rem;
+  padding: 0;
+  margin: 0.2rem 0 2rem;
+  width: 27rem;
 }
 
-footer{
+.toTopButton:hover,
+.toTopButton:focus-within {
+  font-size: 1.8rem;
+}
+
+.toTopButton {
+  align-self: center;
+  height: 0;
+  border: none;
+}
+
+.clearSearch {
+  border: 1px solid $secondary;
+}
+
+// MAIN
+
+// !!!!!!!!! REMEMBER TO REMOVE THIS AS WELL AS THE HTML AND JS REFERENCE IF NOT BEING USED !!!!!!!!!!!!!
+.enteredSite {
+  height: 50vh;
+}
+
+.enteredSite h1,
+.enteredSite p {
+  bottom: 4rem;
+}
+
+.searchedTitle {
+  font-size: 3rem;
+}
+p {
+  margin: 0.5rem 0;
+}
+.summaryTitle {
+  padding-top: 2rem;
+}
+.searchedTitleHr,
+.searchedInfo hr {
+  margin-bottom: 2rem;
+}
+.searchedInfo hr {
+  width: 60%;
+}
+
+.suggestions,
+.moreRandom {
+  font-weight: 600;
+  text-align: center;
+}
+
+.suggestions {
+  padding: 2rem;
+}
+
+.moreRandom {
+  padding: 2rem 1rem;
+  button {
+    margin: 1rem 0 0;
+  }
+}
+
+.randomResults .showContainer:nth-child(even) {
+  border-radius: 0.2rem;
+}
+
+.showContainer {
+  padding: 1rem;
+}
+// FOOTER
+footer {
   background-color: $secondary;
   color: $primary;
-  text-align: center;
   height: 5rem;
 }

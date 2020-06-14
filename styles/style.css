@@ -267,7 +267,8 @@ li {
 }
 
 header,
-form {
+.moreRandom,
+.randomSection {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -275,15 +276,22 @@ form {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-header {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+.genresInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 button,
@@ -306,13 +314,79 @@ header p {
 }
 
 h1,
-button {
+button,
+.enteredSite p {
   position: relative;
+}
+
+h1,
+.searchedTitle {
+  font-family: "Federo", sans-serif;
+}
+
+header p,
+.summaryTitle,
+footer {
+  text-align: center;
+}
+
+button,
+input {
+  height: 4rem;
+}
+
+.searchSection,
+.randomSection {
+  margin: 1rem;
+}
+
+button:hover,
+button:focus-within {
+  cursor: pointer;
+}
+
+.clearSearch:hover,
+.clearSearch:focus-within,
+.toTopButton:hover,
+.toTopButton:focus-within,
+button:hover,
+button:focus-within {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.clearSearch:hover,
+.clearSearch:focus-within {
+  border-width: 4px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+button,
+.moreRandom {
+  margin: 2rem 0;
+}
+
+input,
+.suggestions,
+.moreRandom {
+  width: 100%;
+}
+
+.clearSearch,
+.searchedTitle {
+  margin: 2rem 0 0;
+}
+
+header,
+.suggestions,
+.moreRandom,
+.randomResults .showContainer:nth-child(even) {
+  background-color: #DADDD8;
 }
 
 header {
   height: 100vh;
-  background-color: #DADDD8;
   background-image: url(../images/headerImage.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -320,7 +394,6 @@ header {
 }
 
 header h1 {
-  font-family: "Federo", sans-serif;
   font-size: 4rem;
   letter-spacing: 0.2rem;
   bottom: 2rem;
@@ -330,7 +403,6 @@ header p {
   font-family: "Seaweed Script", cursive;
   margin: 0 2rem;
   font-size: 2.5rem;
-  text-align: center;
   letter-spacing: 0.1rem;
   font-weight: 700;
 }
@@ -342,57 +414,11 @@ header button {
 button {
   text-transform: uppercase;
   width: 15rem;
-  height: 4rem;
   background-color: rgba(236, 159, 5, 0.9);
   border: 4px solid #A4031F;
-  margin: 2rem 0;
-}
-
-.searchSection {
-  height: 80vh;
 }
 
 form {
-  width: 90%;
-  margin: 0 auto;
-}
-
-input {
-  height: 4rem;
-  width: 100%;
-  margin: 6rem auto 0;
-  padding: 0 1rem;
-}
-
-.results {
-  margin: 1rem;
-}
-
-.results .searchedTitle {
-  font-family: "Federo", sans-serif;
-  font-size: 3rem;
-  margin: 2rem 0 0;
-}
-
-.results p {
-  margin: .5rem 0;
-}
-
-.results .summaryTitle {
-  text-align: center;
-  padding-top: 2rem;
-}
-
-.results .searchedTitleHr {
-  margin-bottom: 2rem;
-}
-
-.results .searchedInfo hr {
-  width: 60%;
-  margin-bottom: 2rem;
-}
-
-.results .genresInfo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -400,12 +426,107 @@ input {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: auto;
+      -ms-flex-pack: auto;
+          justify-content: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 auto;
+}
+
+input {
+  margin: 6rem auto 0;
+  padding: 0 1rem;
+}
+
+.clearSearch,
+.toTopButton {
+  background-color: #fff;
+  text-transform: none;
+  text-transform: none;
+  font-size: 1.7rem;
+  padding: 0;
+  margin: 0.2rem 0 2rem;
+  width: 27rem;
+}
+
+.toTopButton:hover,
+.toTopButton:focus-within {
+  font-size: 1.8rem;
+}
+
+.toTopButton {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  height: 0;
+  border: none;
+}
+
+.clearSearch {
+  border: 1px solid #1C1C1C;
+}
+
+.enteredSite {
+  height: 50vh;
+}
+
+.enteredSite h1,
+.enteredSite p {
+  bottom: 4rem;
+}
+
+.searchedTitle {
+  font-size: 3rem;
+}
+
+p {
+  margin: 0.5rem 0;
+}
+
+.summaryTitle {
+  padding-top: 2rem;
+}
+
+.searchedTitleHr,
+.searchedInfo hr {
+  margin-bottom: 2rem;
+}
+
+.searchedInfo hr {
+  width: 60%;
+}
+
+.suggestions,
+.moreRandom {
+  font-weight: 600;
+  text-align: center;
+}
+
+.suggestions {
+  padding: 2rem;
+}
+
+.moreRandom {
+  padding: 2rem 1rem;
+}
+
+.moreRandom button {
+  margin: 1rem 0 0;
+}
+
+.randomResults .showContainer:nth-child(even) {
+  border-radius: 0.2rem;
+}
+
+.showContainer {
+  padding: 1rem;
 }
 
 footer {
   background-color: #1C1C1C;
   color: #DADDD8;
-  text-align: center;
   height: 5rem;
 }
 
@@ -413,7 +534,7 @@ footer {
   .results {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: "title title title" "image info info" "image info info";
+        grid-template-areas: "title title title" "image info info" "image info info";
     gap: 2rem;
   }
   .searchedTitle {

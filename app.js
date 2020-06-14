@@ -16,6 +16,8 @@ app.smoothScroll = () => {
         // expression to determine the target of the scroll
         if(button === "start"){
             target = $("main");
+            $("#start").hide();
+            $("header").addClass("enteredSite")
             // Call the RandomShow function!
             app.randomShow();
         } else if (button === "search") {
@@ -24,6 +26,7 @@ app.smoothScroll = () => {
         } else if (button === "randomize") {
             target = $(".randomizeButton");
             app.randomShow();
+            $(".more").show();
             // Go back to main section
         } else if (button === "back") {
             target = $("main");
@@ -31,6 +34,10 @@ app.smoothScroll = () => {
         } else if (button === "clear") {
             $(".results").empty();
             $(".randomResults").empty();
+            $(".suggestions").hide();
+            $(".more").hide();
+            $("#clear").hide();
+            // !!!!!!! ERROR WITH THIS BUTTON !!!!!!!!!!
         }
 
         $("html, body").animate({
@@ -58,9 +65,9 @@ app.displayMatchedShow = (returnedShow, targetSection) => {
 // Function to display random shows on the page
 app.displayShow = (returnedShow, targetSection) => {
     // empty the results container
-    // $(".results").empty();
     let rating;
     let summary;
+    let initialSummary = [];
 
     if (returnedShow.rating.average === null) {
         rating = "Rating: N/A";
@@ -74,22 +81,36 @@ app.displayShow = (returnedShow, targetSection) => {
         summary = returnedShow.summary;
     }
 
+    if(targetSection === ".randomResults"){
+        const words = summary.split(' ');
+        initialSummary.push(words);
+        
+        if(initialSummary[0].length > 40){
+            let shortSummary = initialSummary[0].slice(0, 40);
+            shortSummary.push("...");
+            summary = shortSummary.join(' ')
+        }
+    
+    }
+
     const showContainer = `
-                <h2 class="searchedTitle">${returnedShow.name}</h2>
-                <hr class="searchedTitleHr">
-                <div class="searchedImage">
-                    <img src="${returnedShow.image.original}" alt="">
-                </div>
-                <div class="searchedInfo">
-                    <div class="basicInfo">
-                        <p>Language: ${returnedShow.language}</p>
-                        <p>Rating: ${rating}</p>
-                        <p class="genres">Genres: ${returnedShow.genres}</p>
+            <div class="showContainer">
+                    <h2 class="searchedTitle">${returnedShow.name}</h2>
+                    <hr class="searchedTitleHr">
+                    <div class="searchedImage">
+                        <img src="${returnedShow.image.original}" alt="">
                     </div>
-                    <p class="summaryTitle">Summary</p>
-                    <hr>
-                    <p>${summary}</p>
-                </div>
+                    <div class="searchedInfo">
+                        <div class="basicInfo">
+                            <p>Language: ${returnedShow.language}</p>
+                            <p>Rating: ${rating}</p>
+                            <p class="genres">Genres: ${returnedShow.genres}</p>
+                        </div>
+                        <p class="summaryTitle">Summary</p>
+                        <hr>
+                        <p>${summary}</p>
+                    </div>
+                    </div>
                 `;
     // append the results to the results container
      
@@ -136,7 +157,7 @@ app.randomShow = () => {
 }
 // Function to handle error when nothing matched with user input
 app.displayErrorMessage = () => {
-    const errorMessage = $("<h2>").text("There are 0 result matched. Please try again or search for other shows!");
+    const errorMessage = $("<p>").text("There are 0 result matched. Please try again or search for other shows!");
     $(".results").empty().append(errorMessage);
 }
 
