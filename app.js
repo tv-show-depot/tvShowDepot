@@ -116,11 +116,8 @@ app.fetchShow = (query) => {
 // Function to display random shows when Start button is clicked
 app.randomShow = () => {
     targetSection = ".randomResults";
-    // $(".randomResults").empty();
-    app.getRandomNumber = () => {
-        const randomNumber = Math.ceil(Math.random() * 250);
-        return randomNumber;
-    }
+    const randomId = Math.ceil(Math.random() * 250);
+       
     // Function to fetch a batch of random shows using random show ID
     app.getRandomShow = (number) => {
         return $.ajax({
@@ -131,8 +128,7 @@ app.randomShow = () => {
             app.displayShow(data, targetSection);
         })
     }
-    // Assign a random number to this variable
-    const randomId = app.getRandomNumber();
+    
     // Start from the random show ID, get back 9 consecutive shows
     for (let i = randomId; i <= randomId + 9 ; i++) {
         app.getRandomShow(i);
