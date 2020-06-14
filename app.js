@@ -2,47 +2,6 @@ app = {};
 
 app.url = ` http://api.tvmaze.com/singlesearch/shows?q=query`;
 
-const array = ["show", "another show", "yet another show"]
-
-// Function fetch API using ajax
-app.fetchShow = (query) => {
- $.ajax({
-        url: app.url,
-        method: "GET",
-        dataType: "json",
-        data: {
-            format: "json",
-            q: query
-        }
-    }).then((result) => {
-        app.displayShow(result);
-    }).fail((error) => {
-        app.displayErrorMessage();
-    })
-}
-// Function to display random shows when Start button is pressed
-app.randomShow = () => {
-    
-    $(".results").empty();
-    app.getRandomNumber = () => {
-        const randomNumber = Math.ceil(Math.random() * 250);
-        return randomNumber;
-    }
-    app.getRandomShow = (number) => {
-        return $.ajax({
-            url: `http://api.tvmaze.com/shows/${number}`,
-            method: "GET",
-            dataType: "json"
-        }).then((data) => {
-            app.displayMatchedShow(data);
-        })
-    }
-    const randomId = app.getRandomNumber();
-
-    for (let i = randomId; i <= randomId + 10 ; i++) {
-        app.getRandomShow(i);
-    }
-}
 
 // Smooth scroll to Search section
 app.smoothScroll = () => {
@@ -59,8 +18,19 @@ app.smoothScroll = () => {
             target = $("main");
             // Call the RandomShow function!
             app.randomShow();
-        }else if (button === "search"){
+        } else if (button === "search") {
             target = $(".results");
+            // Append another batch of shows below current batch
+        } else if (button === "randomize") {
+            target = $(".randomizeButton");
+            app.randomShow();
+            // Go back to main section
+        } else if (button === "back") {
+            target = $("main");
+            // Clear all shows on page
+        } else if (button === "clear") {
+            $(".results").empty();
+            $(".randomResults").empty();
         }
 
         $("html, body").animate({
@@ -78,14 +48,17 @@ app.showToLookUp = () => {
     })
 }
 
-// Function to display returned result on the page
-app.displayShow = (returnedShow) => {
-    // $(".results").empty();
-    app.displayMatchedShow(returnedShow);
+// Function to display matched result which user looked for on the page
+let targetSection;
+app.displayMatchedShow = (returnedShow, targetSection) => {
+    $(".results").empty();
+    targetSection = ".results";
+    app.displayShow(returnedShow, targetSection);
 }
-app.displayMatchedShow = (returnedShow) => {
+// Function to display random shows on the page
+app.displayShow = (returnedShow, targetSection) => {
     // empty the results container
-   
+    // $(".results").empty();
     let rating;
     let summary;
 
@@ -109,21 +82,62 @@ app.displayMatchedShow = (returnedShow) => {
                 </div>
                 <div class="searchedInfo">
                     <div class="basicInfo">
-                
-                            <p>Language: ${returnedShow.language}</p>
-                            <p>Rating: ${rating}</p>
-                    
+                        <p>Language: ${returnedShow.language}</p>
+                        <p>Rating: ${rating}</p>
                         <p class="genres">Genres: ${returnedShow.genres}</p>
                     </div>
                     <p class="summaryTitle">Summary</p>
                     <hr>
                     <p>${summary}</p>
                 </div>
-                `
+                `;
     // append the results to the results container
-    $(".results").append(showContainer);
+     
+    $(targetSection).append(showContainer);
 }
 
+// Function fetch API using ajax getting back what user search for
+app.fetchShow = (query) => {
+    $.ajax({
+           url: app.url,
+           method: "GET",
+           dataType: "json",
+           data: {
+               format: "json",
+               q: query
+           }
+       }).then((result) => {
+           app.displayMatchedShow(result, targetSection);
+       }).fail((error) => {
+           app.displayErrorMessage();
+       })
+   }
+
+// Function to display random shows when Start button is clicked
+app.randomShow = () => {
+    targetSection = ".randomResults";
+    // $(".randomResults").empty();
+    app.getRandomNumber = () => {
+        const randomNumber = Math.ceil(Math.random() * 250);
+        return randomNumber;
+    }
+    // Function to fetch a batch of random shows using random show ID
+    app.getRandomShow = (number) => {
+        return $.ajax({
+            url: `http://api.tvmaze.com/shows/${number}`,
+            method: "GET",
+            dataType: "json"
+        }).then((data) => {
+            app.displayShow(data, targetSection);
+        })
+    }
+    // Assign a random number to this variable
+    const randomId = app.getRandomNumber();
+    // Start from the random show ID, get back 9 consecutive shows
+    for (let i = randomId; i <= randomId + 9 ; i++) {
+        app.getRandomShow(i);
+    }
+}
 // Function to handle error when nothing matched with user input
 app.displayErrorMessage = () => {
     const errorMessage = $("<h2>").text("There are 0 result matched. Please try again or search for other shows!");

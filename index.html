@@ -24,12 +24,18 @@
                 <label for="searchBar"></label>
                 <input type="text" name="searchBar" id="searchBar" placeholder="Search a show">
                 <button class="submitButton" type="submit" id="search">GO</button>
+                <button class="clearSearch" id="clear">Clear Search</button>
             </form>
             <div class="results">
-                <!-- This is where the API call results are displayed -->
+                <!-- This is where the matched results of the search are displayed -->
             </div>
-            <div class="randomResults">
-                
+            <div>
+                <h3>Not sure what to watch? Here are some shows of the days</h3>
+                <div class="randomResults">
+                    <!-- This is where the random shows are displayed -->
+                </div>
+                <button class="randomizeButton" id="randomize">Get More Random Shows!</button>
+                <button class="goBackButton" id="back">Back to Top</button>
             </div>
         </section>
         </div>
