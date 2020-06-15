@@ -1,6 +1,6 @@
 app = {};
 
-app.url = ` http://api.tvmaze.com/singlesearch/shows?q=query`;
+app.url = ` https://api.tvmaze.com/singlesearch/shows?q=query`;
 
 
 // Smooth scroll to Search section
@@ -143,7 +143,7 @@ app.randomShow = () => {
     // Function to fetch a batch of random shows using random show ID
     app.getRandomShow = (number) => {
         return $.ajax({
-            url: `http://api.tvmaze.com/shows/${number}`,
+            url: `https://api.tvmaze.com/shows/${number}`,
             method: "GET",
             dataType: "json"
         }).then((data) => {
