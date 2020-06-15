@@ -17,7 +17,8 @@ app.smoothScroll = () => {
         if(button === "start"){
             target = $("main");
             $("#start").hide();
-            $("header").addClass("enteredSite")
+            $("header div").addClass("enteredSite")
+            // $("header p").addClass("enteredSite p");
             // Call the RandomShow function!
             app.randomShow();
         } else if (button === "search") {
@@ -94,9 +95,9 @@ app.displayShow = (returnedShow, targetSection) => {
     }
 
     const showContainer = `
-            <div class="showContainer">
+                <div class="showContainer">
                     <h2 class="searchedTitle">${returnedShow.name}</h2>
-                    <hr class="searchedTitleHr">
+                    
                     <div class="searchedImage">
                         <img src="${returnedShow.image.original}" alt="">
                     </div>
@@ -110,7 +111,7 @@ app.displayShow = (returnedShow, targetSection) => {
                         <hr>
                         <p>${summary}</p>
                     </div>
-                    </div>
+                </div>
                 `;
     // append the results to the results container
      
@@ -151,7 +152,7 @@ app.randomShow = () => {
     }
     
     // Start from the random show ID, get back 9 consecutive shows
-    for (let i = randomId; i <= randomId + 9 ; i++) {
+    for (let i = randomId; i < randomId + 9; i++) {
         app.getRandomShow(i);
     }
 }

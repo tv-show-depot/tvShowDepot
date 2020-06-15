@@ -1,7 +1,8 @@
 // PAGE STYLES
 header,
 .moreRandom,
-.randomSection {
+.randomSection,
+footer {
   @include flex(flex, column, center, center);
 }
 
@@ -29,9 +30,9 @@ header p {
   color: $secondary;
 }
 
-h1,
 button,
-.enteredSite p {
+header div,
+header div.enteredSite {
   position: relative;
 }
 
@@ -109,7 +110,6 @@ header {
   h1 {
     font-size: 4rem;
     letter-spacing: 0.2rem;
-    bottom: 2rem;
   }
   p {
     font-family: $leadText;
@@ -119,9 +119,22 @@ header {
     font-weight: 700;
   }
   button {
-    top: 35%;
+    bottom: -20rem;
   }
+  div{
+    bottom: 6rem;
+  }
+  .enteredSite{
+  bottom: 0rem;
 }
+}
+
+
+
+.enteredSite h1{
+  top: 100;
+}
+
 
 button {
   text-transform: uppercase;
@@ -180,6 +193,7 @@ input {
 
 .searchedTitle {
   font-size: 3rem;
+  margin-bottom: 1rem;
 }
 p {
   margin: 0.5rem 0;
@@ -187,12 +201,11 @@ p {
 .summaryTitle {
   padding-top: 2rem;
 }
-.searchedTitleHr,
-.searchedInfo hr {
-  margin-bottom: 2rem;
-}
+
 .searchedInfo hr {
   width: 60%;
+  margin-bottom: 2rem;
+  color: $secondary;
 }
 
 .suggestions,
@@ -217,7 +230,7 @@ p {
 }
 
 .showContainer {
-  padding: 1rem;
+  padding: 1rem 1rem 5rem;
 }
 // FOOTER
 footer {
