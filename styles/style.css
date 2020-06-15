@@ -266,9 +266,16 @@ li {
   margin: 0 auto;
 }
 
+.smallWrapper {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 header,
 .moreRandom,
-.randomSection {
+.randomSection,
+footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -313,9 +320,9 @@ header p {
   color: #1C1C1C;
 }
 
-h1,
 button,
-.enteredSite p {
+header div,
+header div.enteredSite {
   position: relative;
 }
 
@@ -396,7 +403,6 @@ header {
 header h1 {
   font-size: 4rem;
   letter-spacing: 0.2rem;
-  bottom: 2rem;
 }
 
 header p {
@@ -408,7 +414,19 @@ header p {
 }
 
 header button {
-  top: 35%;
+  bottom: -20rem;
+}
+
+header div {
+  bottom: 6rem;
+}
+
+header .enteredSite {
+  bottom: 0rem;
+}
+
+.enteredSite h1 {
+  top: 100;
 }
 
 button {
@@ -479,6 +497,7 @@ input {
 
 .searchedTitle {
   font-size: 3rem;
+  margin-bottom: 1rem;
 }
 
 p {
@@ -489,13 +508,10 @@ p {
   padding-top: 2rem;
 }
 
-.searchedTitleHr,
-.searchedInfo hr {
-  margin-bottom: 2rem;
-}
-
 .searchedInfo hr {
   width: 60%;
+  margin-bottom: 2rem;
+  color: #1C1C1C;
 }
 
 .suggestions,
@@ -521,7 +537,7 @@ p {
 }
 
 .showContainer {
-  padding: 1rem;
+  padding: 1rem 1rem 5rem;
 }
 
 footer {
@@ -531,11 +547,35 @@ footer {
 }
 
 @media (min-width: 768px) {
-  .results {
+  header h1 {
+    font-size: 8rem;
+  }
+  header p {
+    font-size: 4rem;
+  }
+  .results .showContainer,
+  .randomResults .showContainer:nth-child(3n) {
     display: -ms-grid;
     display: grid;
+  }
+  .randomResults {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .results .showContainer,
+  .randomResults .showContainer:nth-child(3n) {
         grid-template-areas: "title title title" "image info info" "image info info";
     gap: 2rem;
+  }
+  .randomResults .showContainer {
+    margin: 1rem;
+    width: calc(50% - 2rem);
+  }
+  .randomResults .showContainer:nth-child(3n) {
+    width: 100%;
   }
   .searchedTitle {
     -ms-grid-row: 1;
@@ -543,7 +583,7 @@ footer {
     -ms-grid-column-span: 3;
     grid-area: title;
     padding: 0 0 1rem 1rem;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #1C1C1C;
   }
   .searchedImage {
     -ms-grid-row: 2;
@@ -565,5 +605,18 @@ footer {
   }
   .languageAndRating p:last-child {
     padding: 0 2rem;
+  }
+  .suggestions,
+  .moreRandom {
+    width: 80%;
+  }
+  form {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  form button {
+    margin-top: 8rem;
   }
 }

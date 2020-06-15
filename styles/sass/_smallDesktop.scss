@@ -1,37 +1,71 @@
-@media (min-width: 768px){
-
-    .results{
-        display: grid;
-        grid-template-areas: "title title title"
-                             "image info info"
-                             "image info info";
-        gap: 2rem;
-        
+@media (min-width: 768px) {
+  header {
+    h1 {
+      font-size: 8rem;
     }
-
-    .searchedTitle{
-        grid-area: title;
-        padding: 0 0 1rem 1rem;
-        border-bottom: 2px solid black;
+    p {
+      font-size: 4rem;
     }
+  }
+  .results .showContainer,
+  .randomResults .showContainer:nth-child(3n) {
+    display: grid;
+  }
 
-    .searchedImage{
-        grid-area: image;
-    }
+  .randomResults {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
-    .searchedInfo{
-        grid-area: info;
-    }
+  .results .showContainer,
+  .randomResults .showContainer:nth-child(3n) {
+    grid-template-areas:
+      "title title title"
+      "image info info"
+      "image info info";
+    gap: 2rem;
+  }
 
-    .languageAndRating{
-        display: flex;
-    }
+  .randomResults .showContainer {
+    margin: 1rem;
+    width: calc(50% - 2rem);
+  }
 
-    .languageAndRating p:last-child{
-        padding: 0 2rem;
-    }
+  .randomResults .showContainer:nth-child(3n) {
+    width: 100%;
+  }
 
-   
+  .searchedTitle {
+    grid-area: title;
+    padding: 0 0 1rem 1rem;
+    border-bottom: 2px solid $secondary;
+  }
 
+  .searchedImage {
+    grid-area: image;
+  }
 
+  .searchedInfo {
+    grid-area: info;
+  }
+
+  .languageAndRating {
+    display: flex;
+  }
+
+  .languageAndRating p:last-child {
+    padding: 0 2rem;
+  }
+
+  .suggestions,
+  .moreRandom {
+    width: 80%;
+  }
+
+  form{
+      flex-direction: row;
+      button{
+          margin-top: 8rem;
+      }
+  }
 }

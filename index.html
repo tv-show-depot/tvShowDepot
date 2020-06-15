@@ -14,20 +14,24 @@
 
 <body>
     <header>
-        <h1>Tv Show Depot</h1>
-        <p>Your favourite show info</p>
+        <div>
+            <h1>Tv Show Depot</h1>
+            <p>Your favourite show info</p>
+        </div>
         <button id="start">Start</button>
     </header>
     <!-- END OF HEADER -->
     <main>
         <div class="wrapper">
             <section class="searchSection">
-                <form action="">
-                    <label for="searchBar"></label>
-                    <input type="text" name="searchBar" id="searchBar" placeholder="Search a show">
+                <div class="smallWrapper">
+                    <form action="">
+                        <label for="searchBar"></label>
+                        <input type="text" name="searchBar" id="searchBar" placeholder="Search a show">
 
-                    <button class="submitButton" type="submit" id="search">GO</button>
-                </form>
+                        <button class="submitButton" type="submit" id="search">Search</button>
+                    </form>
+                </div>
                 <div class="results">
                     <!-- This is where the matched results of the search are displayed -->
                 </div>
