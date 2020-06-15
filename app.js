@@ -123,9 +123,9 @@ app.fetchShow = (query) => {
     $.ajax({
            url: app.url,
            method: "GET",
-           dataType: "jsonp",
+           dataType: "json",
            data: {
-               format: "jsonp",
+               format: "json",
                q: query
            }
        }).then((result) => {
@@ -145,7 +145,7 @@ app.randomShow = () => {
         return $.ajax({
             url: `http://api.tvmaze.com/shows/${number}`,
             method: "GET",
-            dataType: "jsonp"
+            dataType: "json"
         }).then((data) => {
             app.displayShow(data, targetSection);
         })
