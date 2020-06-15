@@ -100,6 +100,9 @@ header,
   background-color: $primary;
 }
 
+img {
+  max-height: 70rem;
+}
 // HEADER
 header {
   height: 100vh;
@@ -110,6 +113,7 @@ header {
   h1 {
     font-size: 4rem;
     letter-spacing: 0.2rem;
+    text-shadow: 5px 5px 5px $background;
   }
   p {
     font-family: $leadText;
@@ -117,6 +121,7 @@ header {
     font-size: 2.5rem;
     letter-spacing: 0.1rem;
     font-weight: 700;
+    text-shadow: 5px 5px 5px $background;
   }
   button {
     bottom: -20rem;
@@ -128,8 +133,6 @@ header {
   bottom: 0rem;
 }
 }
-
-
 
 .enteredSite h1{
   top: 100;
@@ -195,9 +198,17 @@ input {
   font-size: 3rem;
   margin-bottom: 1rem;
 }
+
+.searchSection .errorMessage{
+  text-align: center;
+  margin: 3rem auto 5rem;
+  font-weight: 600;
+}
+
 p {
   margin: 0.5rem 0;
 }
+
 .summaryTitle {
   padding-top: 2rem;
 }
