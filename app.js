@@ -4,21 +4,29 @@ app.url = ` https://api.tvmaze.com/singlesearch/shows?q=query`;
 
 
 // Smooth scroll to Search section
-app.smoothScroll = () => {
-    // onclick event
-    $("button").on('click', function(e) {
-        e.preventDefault();
+app.onClickEvents = () => {
 
+    // onclick event
+    $("button").on("click", function(e) {
+        e.preventDefault();
         let target;
         // grab id of clicked button
         const button = $(this).attr("id");
+    
 
-        // expression to determine the target of the scroll
-        if(button === "start"){
+    if (button === "clear") {
+        $(".results").empty();
+            $(".randomResults").empty();
+            $(".suggestions").hide();
+            $(".more").hide();
+            $("#clear").hide();
+            return;
+        } else if (button === "start") {
             target = $("main");
             $("#start").hide();
-            $("header div").addClass("enteredSite")
-            // $("header p").addClass("enteredSite p");
+            $("header div").addClass("enteredSite");
+            $("section").show();
+            $("footer").show();
             // Call the RandomShow function!
             app.randomShow();
         } else if (button === "search") {
@@ -28,21 +36,15 @@ app.smoothScroll = () => {
             target = $(".randomizeButton");
             app.randomShow();
             $(".more").show();
+            $("#clear").show();
             // Go back to main section
         } else if (button === "back") {
             target = $("main");
-            // Clear all shows on page
-        } else if (button === "clear") {
-            $(".results").empty();
-            $(".randomResults").empty();
-            $(".suggestions").hide();
-            $(".more").hide();
-            $("#clear").hide();
-            // !!!!!!! ERROR WITH THIS BUTTON !!!!!!!!!!
         }
 
-        $("html, body").animate({
-            scrollTop: $(target).offset().top}, "slow");
+    // determine the target of the scroll
+    $("html, body").animate({
+        scrollTop: $(target).offset().top}, "slow");
     })
 }
 
@@ -80,18 +82,6 @@ app.displayShow = (returnedShow, targetSection) => {
         summary = "There is no summary for this show."
     } else {
         summary = returnedShow.summary;
-    }
-
-    if(targetSection === ".randomResults"){
-        const words = summary.split(' ');
-        initialSummary.push(words);
-        
-        if(initialSummary[0].length > 40){
-            let shortSummary = initialSummary[0].slice(0, 40);
-            shortSummary.push("...");
-            summary = shortSummary.join(' ')
-        }
-    
     }
 
     const showContainer = `
@@ -158,13 +148,17 @@ app.randomShow = () => {
 }
 // Function to handle error when nothing matched with user input
 app.displayErrorMessage = () => {
-    const errorMessage = $("<p>").text("There are 0 result matched. Please try again or search for other shows!");
+    const errorMessage = $("<p>")
+        .text("There are 0 result matched. Please try again or search for other shows!")
+        .addClass("errorMessage");
     $(".results").empty().append(errorMessage);
 }
 
 app.init = () => {
-    app.smoothScroll();
+    app.onClickEvents();
     app.showToLookUp();
+    $("section").hide();
+    $("footer").hide();
 }
 
 $(() => {
