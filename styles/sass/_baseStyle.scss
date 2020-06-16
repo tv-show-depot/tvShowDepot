@@ -1,36 +1,29 @@
- html{
-     font-size: 63.5%;
- }
+html {
+  font-size: 63.5%;
+}
 
- h1,
- h2,
- input{
-     margin: 0;
-     padding: 0;
- }
+h1,
+h2,
+input,
+ul {
+  margin: 0;
+  padding: 0;
+}
 
- ul{
-     padding: 0;
-     margin: 0;
- }
+li {
+  list-style: none;
+}
 
- li{
-     list-style: none;
- }
+.wrapper,
+.smallWrapper {
+  width: 100%;
+  margin: 0 auto;
+}
 
- .wrapper{
-     max-width: 1200px;
-     width: 100%;
-     margin: 0 auto;
- }
+.wrapper {
+  max-width: 1050px;
+}
 
- .smallWrapper{
-     max-width: 600px;
-     width: 100%;
-     margin: 0 auto;
- }
-
-
-
-
-
+.smallWrapper {
+  max-width: 600px;
+}

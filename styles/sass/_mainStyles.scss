@@ -7,8 +7,8 @@ footer {
 }
 
 .genresInfo {
-  display: flex;
-  flex-direction: column;
+  @include flex(flex, column, auto, auto) // display: flex;
+    // flex-direction: column;;
 }
 
 button,
@@ -25,7 +25,7 @@ li {
 
 h1,
 h2,
-button,
+.searchedInfo hr,
 header p {
   color: $secondary;
 }
@@ -43,6 +43,9 @@ h1,
 
 header p,
 .summaryTitle,
+.searchSection .errorMessage,
+.suggestions,
+.moreRandom,
 footer {
   text-align: center;
 }
@@ -60,6 +63,7 @@ input {
 button:hover,
 button:focus-within {
   cursor: pointer;
+  border-color: $accentTwo;
 }
 
 .clearSearch:hover,
@@ -100,9 +104,19 @@ header,
   background-color: $primary;
 }
 
-img {
-  max-height: 70rem;
+.searchSection .errorMessage,
+.suggestions,
+.moreRandom {
+  font-weight: 600;
 }
+
+header {
+  h1,
+  p {
+    text-shadow: 5px 5px 5px $background;
+  }
+}
+
 // HEADER
 header {
   height: 100vh;
@@ -113,7 +127,6 @@ header {
   h1 {
     font-size: 4rem;
     letter-spacing: 0.2rem;
-    text-shadow: 5px 5px 5px $background;
   }
   p {
     font-family: $leadText;
@@ -121,29 +134,23 @@ header {
     font-size: 2.5rem;
     letter-spacing: 0.1rem;
     font-weight: 700;
-    text-shadow: 5px 5px 5px $background;
   }
   button {
     bottom: -20rem;
   }
-  div{
+  div {
     bottom: 6rem;
   }
-  .enteredSite{
-  bottom: 0rem;
+  .enteredSite {
+    bottom: 10rem;
+  }
 }
-}
-
-.enteredSite h1{
-  top: 100;
-}
-
 
 button {
   text-transform: uppercase;
   width: 15rem;
-  background-color: $accentTwo;
-  border: 4px solid $accentOne;
+  background-color: $accentOne;
+  border: 4px solid $secondary;
 }
 
 form {
@@ -160,7 +167,6 @@ input {
 .toTopButton {
   background-color: #fff;
   text-transform: none;
-  text-transform: none;
   font-size: 1.7rem;
   padding: 0;
   margin: 0.2rem 0 2rem;
@@ -175,6 +181,7 @@ input {
 .toTopButton {
   align-self: center;
   height: 0;
+  height: 0;
   border: none;
 }
 
@@ -183,12 +190,6 @@ input {
 }
 
 // MAIN
-
-// !!!!!!!!! REMEMBER TO REMOVE THIS AS WELL AS THE HTML AND JS REFERENCE IF NOT BEING USED !!!!!!!!!!!!!
-.enteredSite {
-  height: 50vh;
-}
-
 .enteredSite h1,
 .enteredSite p {
   bottom: 4rem;
@@ -199,10 +200,8 @@ input {
   margin-bottom: 1rem;
 }
 
-.searchSection .errorMessage{
-  text-align: center;
+.searchSection .errorMessage {
   margin: 3rem auto 5rem;
-  font-weight: 600;
 }
 
 p {
@@ -213,20 +212,20 @@ p {
   padding-top: 2rem;
 }
 
+.searchedImage {
+  max-width: 47rem;
+  max-height: 70rem;
+  overflow: hidden;
+}
+
 .searchedInfo hr {
   width: 60%;
   margin-bottom: 2rem;
-  color: $secondary;
-}
-
-.suggestions,
-.moreRandom {
-  font-weight: 600;
-  text-align: center;
 }
 
 .suggestions {
   padding: 2rem;
+  margin-bottom: 3rem;
 }
 
 .moreRandom {
@@ -243,6 +242,7 @@ p {
 .showContainer {
   padding: 1rem 1rem 5rem;
 }
+
 // FOOTER
 footer {
   background-color: $secondary;
