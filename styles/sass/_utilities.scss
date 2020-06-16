@@ -1,0 +1,18 @@
+$headings: "Federo", sans-serif;
+$buttonText: "Titillium Web", sans-serif;
+$leadText: "Seaweed Script", cursive;
+$bodyText: "Roboto Condensed", sans-serif;
+
+$background: #FFF;
+$primary:  #DADDD8;
+$secondary: #1C1C1C;
+$accentOne: #FF9914;
+$accentTwo: #A4031F;
+
+@mixin flex($flex, $direction, $justify, $align-items) {
+  display: $flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align-items;
+}
+

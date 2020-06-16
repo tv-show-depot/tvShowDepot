@@ -1,7 +1,5 @@
 @import "normalize";
+@import "utilities";
 @import "baseStyle";
-@import "mixins";
-@import "fonts";
 @import "mainStyles";
-@import "smallDesktop";
-@import "desktop";
+@import "mediaQueries";
